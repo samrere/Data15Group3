@@ -89,6 +89,14 @@ try:
             else:
                 skills = ["Skills not listed"]
 
+            # Extract posting time
+            listed_at = job.get('listedAt') or job_details.get('listedAt')
+            if listed_at:
+                # Convert LinkedIn timestamp to human-readable format
+                post_time = time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(listed_at / 1000))
+            else:
+                post_time = "N/A"
+
             # Store job data
             job_info = {
                 "title": job.get('title', "N/A"),
@@ -96,7 +104,8 @@ try:
                 "location": location,
                 "description": job_details.get('description', {}).get('text', "N/A"),
                 "skills": skills,
-                "job_url": f"https://www.linkedin.com/jobs/view/{job_id}"
+                "job_url": f"https://www.linkedin.com/jobs/view/{job_id}",
+                "posted_time": post_time
             }
 
             print(f"Fetched job: {job_info['title']} at {job_info['company']}")
