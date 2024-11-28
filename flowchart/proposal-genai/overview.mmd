@@ -1,0 +1,27 @@
+flowchart TB
+    subgraph Input
+        A[Resume] --> B[Resume Parser]
+        C[Job Database] --> D[Job Parser]
+    end
+
+    subgraph Embedding
+        B --> E[Resume Embeddings]
+        D --> F[Job Embeddings]
+        F --> G[(Vector Database)]
+    end
+
+    subgraph Matching
+        E --> H[Semantic Search]
+        G --> H
+        H --> I[Top Matches]
+    end
+
+    subgraph Analysis
+        I --> J[GenAI Agent]
+        A --> J
+        C --> J
+        P[Prompt Templates] --> J
+        J --> K[Match Analysis]
+        J --> L[Resume Feedback]
+        J --> M[Cover Letter Suggestions]
+    end
