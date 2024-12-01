@@ -1,0 +1,50 @@
+$85,000 - $95,000 (super included) + bonus
+Melbourne, Sydney or Brisbane
+
+We’re never just satisfied with how things are – because we know how things could be. And it’s our expert Technology team who forge ahead every day to make those ‘what ifs’ a reality.
+
+Welcome to a place where you can chase real progress and drive real change. And that includes your own career. Being a part of Technology at Suncorp Group means being switched on, endlessly curious and always adaptable. In return, you’ll be supported to bring your own ideas to the table and challenge conventions – with the aim of making life a little brighter, simpler, and better for our customers and each other.
+
+As a Data Engineer in the Insurance and Enterprise Technology domain, you will offer strong leadership and drive the technical vision and capability of the Data Warehousing Chapter. This will be achieved through your superior skills in design, development, implementation and maintenance of unified data platform in Databricks to meet the technology needs of the Groups.
+
+You will have a passion for building robust data platform sufficing the needs of Data Warehousing, Data Science and Gen AI usecases. You will also have to collaborate with world-class external and internal Solution Architects, data engineering experts, and contributing to the continuous improvement of our work processes. This presents a great opportunity to enhance your Data Engineering skills further and introduce new techniques and work methods to a collaborative team environment.
+
+What You'll Do
+
+Implement DBT Core for Data Transformation on Databricks and develop patterns and frameworks suitable for Data Warehousing, Data Science and Gen AI use cases
+Build data assets that are aligned to DET strategy and architectural roadmaps
+Promote and champion Data Platform and Engineering ways of working via continuous build, continuous integration and continuous delivery
+Support detailed solution design, data modelling, estimation and specification process
+Promote test driven development and automated unit test frameworks within the teams
+Promote and champion DevOps (CI/CD) practices using Bitbucket and Jenkins
+Coordination of deployment and release activities for the team
+Develop data engineering standards, implementation patterns and how to guides
+Challenge the development team on their delivery of quality, unit test coverage and assistance in the creation of development artefacts
+Contribute to risk analysis and utilise that information to plan development activities
+Identify technical and process improvements that will benefit the business
+Optimising code and ensuring we are getting the best out of the Data Platform
+Foster a safe, innovative and results driven culture
+
+What You'll Bring
+
+Tertiary qualification in Computer Science, or Information Technology
+Minimum 2 years’ experience within Data Engineering
+Minimum 2 years’ DBT and Databricks experience
+Experience in Data Warehousing and Data Analytics projects including data acquisition, data transformation, and data science projects
+Experience implementing DBT Core/Cloud along with defining patterns and frameworks and hand-on experience implementing DataVault 2.0 through DBT and Databricks
+Experience developing data assets with DBT and Delta lake is required
+Experience with Python and Pyspark is preferred
+Experience in developing and optimising data pipelines using DBT/Databricks workflows
+Experience in data migration, building, enhancing and maintaining cloud data warehousing
+Ability to rapidly acquire an understanding of complex business problems/requirements to develop solutions and designs, regardless of existing areas of expertise or specialisation
+Working experience in cloud environments, especially AWS is preferred
+
+What We Can Offer You
+
+A range of flexible working and leave options, including 20 weeks paid parental leave, 4 weeks paid secondary carer parental leave and unlimited paid emergency response leave
+Discounts and offers on a range of retail favourite stores as well as banking and insurance products
+Give back to our communities with payroll giving, donation matching and paid volunteer leave
+Invest in your brighter future with ongoing study support and career development programs; and
+Prioritise your work/life balance with our robust employee assistance program and dedicated employee council
+
+Employee benefits | Suncorp Group
