@@ -5,3 +5,4 @@ pyproject.toml
 poetry.lock
 playground*
 *.jr
+crawler/Jasper/.DS_Store
