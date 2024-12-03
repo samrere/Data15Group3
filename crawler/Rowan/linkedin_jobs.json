@@ -1,5 +1,102 @@
 [
     {
+        "title": "Software Engineer for Training AI Data (Python)",
+        "company": "G2i Inc.",
+        "location": "Australia",
+        "empoyment type": "Contract",
+        "seniority level": "Entry level",
+        "industries": [
+            "Software Development"
+        ],
+        "Job Functions": [
+            "Information Technology"
+        ],
+        "applies": 92,
+        "workplace_type": "Remote",
+        "description": "Accepted LocationsWe accept applicants from the US, Canada, and most countries in LATAM and Europe. We are accepting candidates from some countries in Africa and Asia. For the complete list of accepted locations, click here. This work is 100% remote.\nLoom VideoOur Founder/CEO, Gabe Greenberg, created a more in-depth Loom video that we highly recommend you watch! Check it out here: https://www.loom.com/share/5a8972c7fbbf46aaa3f389b2b6391c40\nOverviewYou\u2019ll join an expert annotation team to create training data for the world's most advanced AI models. No previous AI experience is necessary. You'll get your foot in the door with one of the most prominent players in the AI/LLM space today. We seek software engineers with 3+ years of experience to train large AI language models, helping cutting-edge generative AI models write better code. Projects typically include discrete, highly variable problems that involve engaging with these models as they learn to code. We currently have 200+ roles open!\nWhat Will I Be Doing?Evaluating the quality of AI-generated code, including human-readable summaries of your rationaleSolve coding problems, writing functional and efficient codeWriting robust test cases to confirm code works efficiently and effectivelyWe asked the technical project manager to go into even more detail and this is how he answered: It is solving coding challenges, creating instructions to help others, reviewing the code before it goes into the model, and there's a ton of variety in the projects. We have everything from \"Which piece of Golang code is better?\" to \"Make a full mobile application using this chatbot, and improve the chatbot's responses afterward to make it faster.\"\nPay RatesCompensation rates vary based on location and experience.Note: The following rates are starting points and may be subject to change:To view the complete list of locations and their values, click here.US - 50/hrBrazil - 25.40 USD /hrEgypt - 14.60 USD /hrPhilippines - 24.20 USD /hrExpectations are 15+ hours per week; however, there is no upper limit. We have engineers working 20-40 hours per week and some working 40+ hours per week. You can work as much as you want to. You'll get paid weekly per hour of work done on the platform.\nContract LengthLong term, there is no end date. They expect to have work for the next 2 years.You can end the contract at any time. We hope you will commit to 12 months of work, but if you start and it's not a fit for you, we totally understand.\nFlexible SchedulesDevelopers can set their own hours\u2014ideal candidates will be interested in spending 40 hours a week. They will be with teams, so strong performers will adapt to the urgency of projects and stay engaged, but they will also be incredibly flexible on working hours.You can take a 3-hour lunch, no problem. Instead of tracking your hours, you are paid according to time spent on the platform, calculated in the coding exercises.\nInterview ProcessApply using this Ashby form.If you seem like a good fit, we'll send an async RLHF code review that will take 35 minutes and must be finished within 72 hours of us sending it.You'll receive credentials to the RLHF platform. We'll then set up a group call to answer any further questions about onboarding with the company.You'll perform a simulated production-level task (RLHF task) on the platform. This will be your final interview, which will ultimately determine your employment and leveling. Successful completion of this process provides you with an opportunity to work on projects as they become available.\nTech Stack PrioritiesThe current priority for this team is engineers with either a Data Science background who know Golang well or software engineers who are well versed in Golang.\nRequired Qualifications:3+ years of experience in a software engineering/software development role.Complete fluency in the English language.Ability to articulate complex scientific concepts clearly and engagingly.Excellent attention to detail and ability to maintain consistency in writing.Solid understanding of grammar, punctuation, and style guidelines.Proficiency with Golang\nNice To Haves:Bachelor's or Master\u2019s degree in Computer ScienceProficiency in working with one or more of the following: Java, JavaScript, TypeScript, C++. SQL, Swift, Ruby, Rust, Go, NET, Matlab, PHP, HTML, DART, R, Apex, and Shell, C, C#Recognized accomplishments or contributions to the coding community or in projects.Proven analytical skills with an ability to approach problems creatively.Adept communication skills, especially when understanding and discussing project requirements.A commitment to continuous learning and staying updated with the latest coding advancements and best practices.Enthusiasm for teaching AI models and experience with technical writing!",
+        "skills": [
+            "C#",
+            "Computer Science",
+            "Doctrine (PHP)",
+            "HTML",
+            "JavaScript",
+            "Punctuation",
+            "Ruby",
+            "Rust (Programming Language)",
+            "Swift (Programming Language)",
+            "TypeScript"
+        ],
+        "job_url": "https://www.linkedin.com/jobs/view/4083829076",
+        "if reposted": true,
+        "posted_time": "2024-12-02 10:53:46",
+        "expire_time": "2025-01-26 08:54:07",
+        "apply url": "https://jobs.ashbyhq.com/g2i/4af23e04-c31e-4f03-aa9a-8db3c35fbbd7?utm_source=LDv6neWmqP"
+    },
+    {
+        "title": "Data Engineer",
+        "company": "Go1",
+        "location": "Melbourne, Victoria, Australia",
+        "empoyment type": "Full-time",
+        "seniority level": "Entry level",
+        "industries": [
+            "E-Learning Providers"
+        ],
+        "Job Functions": [
+            "Information Technology"
+        ],
+        "applies": 303,
+        "workplace_type": "Remote",
+        "description": "Did you know someone completes a Go1 course or learning resource almost three times every second? We've grown from humble beginnings into the most diverse learning content aggregator on the planet. Our culture transcends physical walls, thriving in connections and collaboration. We embrace change as an opportunity for innovation and growth. Our pace is fast, and our goals are ambitious. If you love tackling bold challenges and growing rapidly alongside talented and humble people, you'll fit right in at Go1.\n\nThe next chapter of our growth story needs you. GO there with us.\n\nThe Data team at Go1 offers global Data and AI-centric services, including search, recommendations, content enrichment, and skills taxonomy. We collaborate with internal partners to enhance customer experiences and products. Combining Data Governance, Software, and Data Engineering expertise to provide platforms, tooling, and templates that empower our people to use data effectively. This team also captures and models core data into Data Products and promotes good data practices across Go1.\n\nWhat Does a Data Engineer Do Every Day at Go1?\n\nAs a Data Engineer at Go1, you will build and maintain data products, infrastructure, and tooling for key domains and use cases. Your work will impact Analytics, Experimentation, and AI models powering Go1 products.\n\nKey Responsibilities Include\n\nPartnering with key stakeholders to define technical solutions.Demonstrating excellent verbal communication skills for cross-functional team engagement.Analyzing, designing, developing, and testing data processing pipelines, warehouses, marts, models, and SQL queries.Scripting for orchestration, operation, and data management.Managing Azure infrastructure and services.Supporting Data Consumers by resolving data issues and tuning queries.Conducting performance analysis and optimization of databases, SQL queries, ETL processes, and physical schemas.Providing operational support, monitoring data pipelines and infrastructure, and managing CI/CD and incident management.\n\nWhat will make us excited abut you\n\n3+ years experience in Data EngineeringDriven by requirements to acquire, manipulate, process, and demonstrate value from large datasetsExperienced in integrating streaming and batch data from source systemsStrong analytical skills with structured and unstructured datasetsProficient in big data tools and batch processing technologies Experienced with Spark SQL (Databricks), PySpark (Python), and scripting languages like Python and ScalaProficient in SQL and data pipeline/workflow management toolsKnowledgeable in source control and CI/CDExperienced in testing data from Bronze to Golden Layers\n\nJoin our team at Go1 and be at the forefront of transforming education through innovative learning solutions. Together, we can change the world. One learner at time.\n\nBenefits\n\nAt Go1, our employee benefits extend far beyond a paycheck, ensuring our team feels supported, valued, and empowered to bring their best selves to work each day, driving our mission to unlock positive potential through a love of learning.\n\nIn addition to your base salary: Annual bonus or commission plan.Employee Stock Option Plan: Opportunity to share directly in our success through stock options.Public Holiday Swap: Swap a public holiday for another preferred day. Wellbeing & Learning Days: Additional five days paid leave per year. Learning Budget: $500 USD per financial year, plus access to additional Career Growth Budget.WFH/Transport Budget: Monthly allowance for internet/phone expenses or public transport.Home Office Setup Budget: One-off allowance for desk, chair and/or monitor.Parental Leave: Minimum of 18 weeks paid parental leave for primary carers + 6 weeks paid parental leave for secondary carers. Wellbeing Support: TELUS Health EAP or Spill.\n\nCheck out Life at Go1: LET'S GO!\n\n",
+        "skills": [
+            "Analytical Skills",
+            "Apache Spark",
+            "Communication",
+            "Data Engineering",
+            "Data Pipelines",
+            "Databases",
+            "Datasets",
+            "Extract, Transform, Load (ETL)",
+            "Optimization",
+            "Oral Communication"
+        ],
+        "job_url": "https://www.linkedin.com/jobs/view/4071363134",
+        "if reposted": true,
+        "posted_time": "2024-12-02 10:34:17",
+        "expire_time": "2025-01-10 07:07:12",
+        "apply url": "https://job-boards.greenhouse.io/go1au/jobs/4478243005?gh_src=534d36f45us"
+    },
+    {
+        "title": "AWS DevOps Engineer",
+        "company": "Nuage Technology Group",
+        "location": "Melbourne, Victoria, Australia",
+        "empoyment type": "Contract",
+        "seniority level": "Mid-Senior level",
+        "industries": [
+            "Banking",
+            "Financial Services"
+        ],
+        "Job Functions": [
+            "Engineering",
+            "Information Technology"
+        ],
+        "applies": 40,
+        "workplace_type": "Hybrid",
+        "description": "AWS DevOps Engineer (8-Month Initial Contract)Location: Melbourne, 2 days a week onsite, 3 days remote workingEnterprise level AWS and DevOps rollout$800-900 a day depending on experience\nNOTE: This role is only suitable for people with either Australian Permanent Residency, or Australian Citizen, and the ability to work 2 days a week onsite in Melbournes CBD.\nAbout Us: Nuage is a forward-thinking technology recruitment agency founded in February 2023, focusing on Cloud, Data, AI, ML, and Software Engineering. While we stay ahead of industry trends, we maintain a strong emphasis on the human element that drives our business.\nNuage has partnered with an exciting enterprise within the finance sector. We are looking to secure 2 experienced AWS DevOps / AWS Infrastructure Engineers to join the clients team on an 8-month initial contract. This role will focus on driving the provisioning of Terraform and delivering repeatable, automated deployment solutions. The successful candidate will bring expertise in AWS, CI/CD pipelines, application deployment, and containerized orchestration, with a strong emphasis on collaboration and innovation.\nAbout the role:Design, implement, and maintain scalable infrastructure using Terraform to ensure repeatable, automated deployments.Develop and manage robust CI/CD pipelines with tools such as Jenkins, AWS CodePipeline, or similar.Collaborate with development and operations teams to enhance application packaging and deployment strategies on AWS.Monitor and optimize system performance using tools such as Splunk, Dynatrace, or CloudWatch.Deploy, configure, and manage containerized applications using Amazon EKS or Kubernetes.\nAbout you:Proven experience as a DevOps Engineer, with a primary focus on AWS environments.Expertise in infrastructure as code (IaC) using Terraform.Hands-on experience with CI/CD tools such as Jenkins, AWS CodePipeline, or equivalent.Proficiency in monitoring and logging tools such as Splunk, Dynatrace, or CloudWatch.Strong skills in packaging and deploying applications in AWS environments.Commercial experience working with Amazon EKS or Kubernetes, including hands-on management of containerised workloads.\nTo apply please click apply with your latest CV and we can book in a chat. Feel free to follow our Nuage Linkedin Page to keep up to date on the latest Technology Trends, live and active roles we are recruiting in Australia.",
+        "skills": [
+            "AWS CodePipeline",
+            "Amazon EKS",
+            "Amazon Web Services (AWS)",
+            "Continuous Integration and Continuous Delivery (CI/CD)",
+            "Jenkins",
+            "Terraform"
+        ],
+        "job_url": "https://www.linkedin.com/jobs/view/4089167971",
+        "if reposted": false,
+        "posted_time": "2024-12-02 06:00:31",
+        "expire_time": "2025-01-01 06:00:31",
+        "apply url": "https://www.linkedin.com/job-apply/4089167971"
+    },
+    {
         "title": "Junior Software Engineer Trainee - Software Development Internship Program",
         "company": "Refonte Learning",
         "location": "APJ",
@@ -12,7 +109,7 @@
             "Education",
             "Training"
         ],
-        "applies": 112,
+        "applies": 101,
         "workplace_type": "Remote",
         "description": "Program Title : Software Engineering Mastery Training and Internship (M/F)Location : RemoteProgram Type : Training with Practical InternshipDuration : 3 monthsCompensation : UnpaidLearn more : https://www.refontelearning.com/\n\nJob Description:The Junior Software Engineer Trainee position is part of our intensive Software Development Internship Program. This program combines comprehensive training in software engineering fundamentals with practical, real-world project experience. You will work alongside experienced developers, participate in agile team projects, and gain exposure to a range of programming languages and frameworks.\nKey Responsibilities:Engage in hands-on coding sessions and implement software features under mentor guidance.Collaborate with cross-functional teams to test, debug, and refine code.Document technical processes and maintain high-quality code following industry standards.\nQualifications:Currently enrolled in a Computer Science or Software Engineering program.Basic knowledge of languages such as Java, Python, or JavaScript.Eager to learn, team-oriented, and passionate about software engineering.\nSkills Developed:Proficiency in object-oriented programming, agile methodologies, and software version control.Experience using collaboration and project management tools (e.g., Git, JIRA).",
         "skills": [
@@ -28,56 +125,86 @@
             "Software Implementation",
             "Version Control"
         ],
-        "job_url": "https://www.linkedin.com/jobs/view/4088696105",
+        "job_url": "https://www.linkedin.com/jobs/view/4089599078",
         "if reposted": false,
-        "posted_time": "2024-12-01 11:15:39",
-        "expire_time": "2024-12-31 11:15:39"
+        "posted_time": "2024-12-02 20:59:52",
+        "expire_time": "2025-01-01 20:59:52",
+        "apply url": "https://www.linkedin.com/job-apply/4089599078"
     },
     {
-        "title": "Staff Software Engineer - League of Legends, Game Modes",
-        "company": "Riot Games",
+        "title": "Data Engineer - Data Intelligence - Team Better Data",
+        "company": "Culture Amp",
+        "location": "Melbourne, Victoria, Australia",
+        "empoyment type": "Full-time",
+        "seniority level": "Mid-Senior level",
+        "industries": [
+            "Software Development"
+        ],
+        "Job Functions": [
+            "Information Technology"
+        ],
+        "applies": 115,
+        "workplace_type": "Hybrid",
+        "description": "Join us on our mission to make a better world of work. \n\nCulture Amp is the world\u2019s leading employee experience platform, revolutionizing how 25 million employees across more than 6,500 companies create a better world of work. Culture Amp empowers companies of all sizes and industries to transform employee engagement, drive performance management, and develop high-performing teams. Powered by people science and the most comprehensive employee dataset in the world, the most innovative companies including Canva, On, Asana, Dolby, McDonalds and Nasdaq depend on Culture Amp every day.\n\nCulture Amp is backed by leading venture capital funds and has offices in the US, UK, Germany and Australia. Culture Amp has been recognized as one of the world\u2019s top private cloud companies by Forbes and most innovative companies by Fast Company.\n\nFor more information visit cultureamp.com .\n\nHow you can help make a better world of work\n\nWe are looking for a Data Engineer to join our Better Data team. We sit within the Data Intelligence Camp, where we are responsible for enriching and curating data to help build reporting and analytics capabilities for our platform, leveraging data engineering, ML engineering and data science. We\u2019re also working on levelling up Culture Amp\u2019s approach to customer-facing analytics by leveraging Clickhouse for realtime analytics, to help HR leaders use data from across the Culture Amp platform to maximise and measure the impact they have on their organisations.\n\nIn part of this team of amazing humans,\n\nYou will\n\nLead the design and build of the data pipelines that underpin our analytics products. Ensure those pipelines are tested, performant and observable.Monitor end-user performance and optimise the schemas and queries.Play a key role in promoting data best practices across the team and camp and support others to develop their own knowledge and skills. Collaborate with stakeholders to ensure we\u2019re responsibly managing our data in line with our privacy, security and compliance requirements. \n\n\nYou have\n\nExperience with cloud data warehouses such as Redshift. Skills in modelling and querying data in SQL and Python.Experience with ETL/ELT tooling including DBT and Airflow.Desirable but not essential - experience with CI/CD and infrastructure-as-code, ideally within AWS cloud. Also desirable - familiarity with AWS\u2019 data tools, including Athena, Glue, SageMaker, EMR.\n\n\nYou are\n\nA driver of technical excellence in a team environment. You\u2019re an expert in your domain and are able to develop the expertise and knowledge of those around you. Someone who loves collaboration - our teams are cross functional and you\u2019ll be working with other engineers, team leads and product managers to deliver great outcomes together.Keenly interested in understanding and solving customer problems. You think about how your work impacts our customers and improves their experienceA pragmatic engineer. You ask and understand what we're optimizing for before jumping into solutions, and can comfortably balance long-term objectives with short-term tradeoffs. Aligned with our values, check them out here: https://www.cultureamp.com/company#values and demonstrate them through your working practiceSelf-motivated and able to work independently, comfortable dealing with ambiguity when necessary. You take the initiative to ensure that you have everything you need to work effectively and ask for support when required.\n\n\nWe believe that our employees are the heartbeat of our success. We're committed to fostering a work environment that truly cares for and develops its people, and creates lasting positive impact. In addition to providing a competitive compensation package, some of the key benefits we offer are:\n\nEmployee Share Options Program: We empower you to be an owner in Culture Amp and share in our successPrograms, coaching, and budgets to help you thrive personally and professionallyAccess to external providers for mental wellbeing and coaching support to sustain the wellbeing, safety and development of our peopleMonthly Camper Life Allowance: An automatic allowance paid out each month with your pay - you can spend it however you like to help improve your experience and life outside workTeam budgets dedicated to team building activities and connectionIntentional quarterly wellbeing pauses: A quarterly company-wide shutdown day in each region to to collectively pause, reset and focus on restoration and rest, without having to tap into individual vacation timeExtended year-end breaks: An extended refresh period at the end of yearExcellent parental leave and in work support program available from day 1 of joining Culture Amp5 Social Impact Days a year to make a positive impact on the community outside of workMacBooks for you to do your best & a work from home office budget to spend on setting up your home officeMedical insurance coverage for you and your family (Available for US & UK only) \n\n\nAdditionally, we don't just focus on our internal community; we believe in creating a better world of work for all. We're committed to diversity, equity, and inclusion, with Employee Resource Groups and ally communities in place.\n\nWe have a strong commitment to Anti-Racism, and endeavor to lead by example. Every step we make as a business towards anti-racism is another step we can take to support our customers in making a better world (of work). You can see our current commitments to Anti-Racism here .\n\nPlease keep reading...\n\nResearch shows that candidates from underrepresented backgrounds often don't apply for roles if they don't meet all the criteria \u2013 unlike majority candidates meeting significantly fewer requirements.\n\nWe strongly encourage you to apply if you\u2019re interested: we'd love to know how you can amplify our team with your unique experience!\n\nThank you for taking the time to read this advert. If you decide to apply, as part of your application, we will ask you to complete voluntary diversity questions (excluding Germany). Please watch this video from our amazing DEI Leader, Aubrey Blanche to share more on why we collect the data and how we will use it.\n\nIf you require reasonable accommodations or adjustments due to a disability to complete the online application or to participate in the interview process, please contact accommodations@cultureamp. com and identify the type of accommodation or assistance you are requesting. Do not include any medical or health information in this email. The Reasonable Accommodations team will respond to your email promptly.\n\n",
+        "skills": [
+            "Airflow",
+            "Amazon Redshift",
+            "Data Engineering",
+            "Data Science",
+            "Data Warehousing",
+            "Databases",
+            "English as a Second Language (ESL)",
+            "Extract, Transform, Load (ETL)",
+            "Python (Programming Language)",
+            "SQL"
+        ],
+        "job_url": "https://www.linkedin.com/jobs/view/4071388204",
+        "if reposted": true,
+        "posted_time": "2024-12-02 10:26:13",
+        "expire_time": "2025-01-10 09:57:46",
+        "apply url": "https://boards.greenhouse.io/cultureamp/jobs/6386891?gh_src=475504ca1us&source=LinkedIn"
+    },
+    {
+        "title": "Cloud Engineer - AWS",
+        "company": "Synechron",
         "location": "Sydney, New South Wales, Australia",
         "empoyment type": "Full-time",
         "seniority level": "N/A",
         "industries": [
-            "Computer Games",
-            "Software Development",
-            "Technology, Information and Internet"
+            "Information Services"
         ],
         "Job Functions": [
-            "Engineering",
             "Information Technology"
         ],
-        "applies": 1,
-        "workplace_type": "On-site",
-        "description": "Riot Sydney is looking for an experienced Staff Software Engineer to join the Sydney-based League, Modes team. Internal Job Title: Software Engineer III.\n\nAs Software Engineers at Riot, we bring deep knowledge of specific technical areas and also value the opportunity to work in a variety of broader domains. We work with both new and current technology, creating innovative solutions to overcome high-volume obstacles and to deliver player value.\n\nAs a Staff Software Engineer on the Modes team under League\u2019s Gameplay initiative, you will bring deep gameplay technical knowledge and skills to the game play domains in League of Legends. You will increase sustainability for current rotating modes and develop tools and workflows that make it easier for designers and artists to create awesome experiences for our players. You will work as part of a diverse team consisting of artists, designers, engineers, producers, and QA. You will also be leading the technical decision-making processes on the team, and you will be accountable for all technical decisions as well as the quality of the technology supported by the team. You will report to the Team Engineering Manager.\n\nResponsibilities\n\nLead, identify and build improvements to allow League of Legends to more sustainably maintain rotating game modes.Understand the backend services powering League of Legends and lead technical decisions to best use them.Lead the automation of aspects of creating and running existing rotating game modes.Lead, design and develop features and UI in the League of Legends game engine using C++.Collaborate with cross-disciplinary teams in Sydney and the US (including Game Designers, Artists, Animators, Quality, and Producers) to shape player experiencesGive feedback to designers and artists on the technical tradeoffs of their designs and ideasGive feedback to product leaders about product direction and player affinityCollaborate with and mentor engineering teammates\n\nRequired Qualifications\n\n8+ yrs of collective professional experience building applications or games in a client-server architecture.Bachelor\u2019s degree in Computer Science or comparable field or equivalent experienceExperience working closely with non-engineering collaborators to deliver valueExperience building gamesExperience working with complex code basesProfessional experience using C++\n\nFor this role, you'll succeed through craft expertise and a collaborative spirit that prioritises the delight of players. We will look at your past studies and experience, but for this role, we also look for dedicated people with a personal relationship with games. If you embody player empathy and care about players' experiences, this is the role for you!\n\nWorking closely with Riot teams globally, Riot Sydney is a powerhouse of talent, and experts in global development. Our team works on VALORANT, League of Legends and Teamfight Tactics, alongside exciting R&D and Tech projects.\n\nIf you believe that the Player Experience comes first, we want to hear from you. Our players are a diverse group from different backgrounds, and we want to see that reflected in the people who make our games, all qualified applicants will be considered for employment\n\nOur Perks\n\nAt Riot we strongly believe in work/life balance, and we encourage that with our open paid time off policy, paid parental leave (for both primary and secondary carers) and flexible work schedules to fit your lifestyle.\n\nWe also believe that work should be fun, we have a LAN gaming room, the latest consoles, a play fund so you can broaden and deepen your knowledge of our players and community, and all the snacks you would ever need to power through your day (even healthy snacks!).\n\nAnd that\u2019s not all we offer, there\u2019s also:\n\nMedical, Dental and Vision StipendWellbeing ReimbursementWe will double down on your donations of time and money to non-profitsEmployee Assistance ProgramLearning and Development opportunities\n\nRiot Games fosters a player and workplace experience that values teamwork embodied by the Summoner's Code and Community Code. Our culture embraces differences as a strength, and our values are the guiding principles for how we approach work. We are committed to putting diversity and inclusion (D&I) at the center of everything we do, and promoting a fair and collaborative culture where Rioters treat one another with dignity and respect. We encourage you to read more about our value of thriving together and our ongoing work to build the most inclusive company in Gaming.",
+        "applies": 33,
+        "workplace_type": "Hybrid",
+        "description": "Synechron is a leading global digital consulting firm, providing innovative technology solutions for business. Our expertise in AI, Consulting, Data, Digital, Cloud & DevOps and Software Engineering, delivers customized, end-to-end solutions that drive business value and growth.\nThe role can be offered as a contract or Permanent\nThe successful candidate should have hands-on experience on multiple AWS services.\nSkills:\nShould have good hands-on experience on the AWS Services like EC2, S3, RDS, Lambda, AWS Glue API Gateway, DynamoDB, CloudFront, Route 53, AWS X-Ray, AWS SQL, AWS SNS etc.Should have hands-on experience on database like RDS, DynamoDB, Redshift, Aurora etc.Should have experience on CI/CD pipelines, Jenkins, CodePipeline, CodeBuild, CodeCommit etcShould have exposure on any of the streaming technologies like Kafka, AWS Kinesis, AWS Kinesis Data Firehose etc.",
         "skills": [
-            "Back-End Web Development",
-            "C++",
-            "Cascading Style Sheets (CSS)",
-            "Computer Science",
-            "Distributed Systems",
-            "Game Development",
-            "Programming",
-            "Server Architecture",
-            "Software Design",
-            "Software Development"
+            "AWS Lambda",
+            "Amazon EC2",
+            "Amazon Web Services (AWS)",
+            "Cloud Infrastructure",
+            "Continuous Integration and Continuous Delivery (CI/CD)",
+            "Jenkins",
+            "Linux System Administration",
+            "Powershell",
+            "Python (Programming Language)",
+            "SQL"
         ],
-        "job_url": "https://www.linkedin.com/jobs/view/4086305348",
+        "job_url": "https://www.linkedin.com/jobs/view/4086589965",
         "if reposted": false,
-        "posted_time": "2024-12-01 08:15:17",
-        "expire_time": "2024-12-20 20:15:22"
+        "posted_time": "2024-12-02 03:59:44",
+        "expire_time": "2025-01-01 03:59:44",
+        "apply url": "N/A"
     },
     {
-        "title": "Cyber Security and Systems Specialist",
-        "company": "Public Sector People",
-        "location": "Sydney, New South Wales, Australia",
-        "empoyment type": "Temporary",
+        "title": "Data Processing Software Engineer ? SKA-Low Telescope",
+        "company": "Workforce Australia for Individuals",
+        "location": "Perth, Western Australia, Australia",
+        "empoyment type": "Full-time",
         "seniority level": "Entry level",
         "industries": [
-            "Architecture and Planning",
-            "Government Administration",
-            "Government Relations Services"
+            "Government Administration"
         ],
         "Job Functions": [
             "Engineering",
@@ -85,22 +212,126 @@
         ],
         "applies": "N/A",
         "workplace_type": "On-site",
-        "description": "Public Sector People (PSP) are currently looking to speak to a Cyber Security Specialist who would be interested in an initial 6-month contract.\n\n6-month contract (minimum) Flexible work arrangement, Western Sydney Location Highly competitive daily rate Must have experience in SIEM, Vuln MgMt, Pen Test and End Point. \n\nThis role is a 6-month contract to assist with a HUGE Digital Transformation project (currently half way through a 4 year project) specifically with a Cyber Security focus.\n\nYou will be working closely with the Security Project Manager to run and drive the current projects and liaise with stakeholders, experience on similar projects essential!\n\nKey Responsibilities\n\nAssist with the ongoing development and implementation of security operations practices and framework. Detect threats, respond to and mitigate cyber events both reactively and proactively. Lead the ongoing ingestion, processing and monitoring of security event data. Participate and encourage cyber security awareness campaigns across the organisation. Participate and lead projects and also responsible for the BAU function of the role. Create and deliver timely and accurate reporting on security scorecards and reports. \n\nRequirements Include:\n\nThe following qualifications and/or experience are required for the position:\n\nMust have significant experience in the implementation of cybersecurity frameworks, governance and reporting implantations. A certification in Network and Security. A certification in ITIL will be highly regarded. Experience in SIEM, Vuln MgMt, Pen Test and End Point. Must have strong and effective stakeholder engagement skills including communication and listening skills. Able to prioritise tasks and work autonomously on both project and BAU focused tasks. \n\nPlease note: If successful in this role, you will be required to have an up-to-date National Police Check (can be completed throughout the selection process).\n\nAPPLY TODAY to be considered for an interview or email dcorkill@publicsectorpeople.com.au if you have any questions.",
+        "description": "Acknowledgement of Country \n\nCSIRO acknowledges the Traditional Owners of the land, sea and waters, of the area that we live and work on across Australia. We acknowledge their continuing connection to their culture and pay our respects to their Elders past and present. View our vision towards reconciliation\n\nChild safety \n\nCSIRO is committed to the safety and wellbeing of all children and young people involved in our activities and programs. View our Child Safe Policy .\n\nThe opportunity \n\nThe SKA Observatory (SKAO) is a next-generation radio astronomy facility that will revolutionise our understanding of the Universe and the laws of fundamental physics. Enabled by cutting-edge technology, it promises to have a major impact on society, in science and beyond.\n\nIn Australia, the SKAO is collaborating\n\nClick here to view more detail / apply for Data Processing Software Engineer ? SKA-Low Telescope",
         "skills": [
-            "Communication",
-            "Cybersecurity",
-            "Ethical Hacking",
-            "Information Security",
-            "Information Technology",
-            "Pen",
-            "Security Awareness",
-            "Security Information and Event Management (SIEM)",
-            "Stakeholder Engagement",
-            "Vulnerability Assessment"
+            ".NET Framework",
+            "ASP.NET",
+            "C++",
+            "Cascading Style Sheets (CSS)",
+            "HTML",
+            "Object-Oriented Programming (OOP)",
+            "Programming",
+            "Python (Programming Language)",
+            "Software Development",
+            "Telescope"
         ],
-        "job_url": "https://www.linkedin.com/jobs/view/4088690772",
+        "job_url": "https://www.linkedin.com/jobs/view/4087645465",
         "if reposted": false,
-        "posted_time": "2024-12-01 11:04:41",
-        "expire_time": "2024-12-31 11:04:41"
+        "posted_time": "2024-12-03 02:37:32",
+        "expire_time": "2025-01-02 02:37:31",
+        "apply url": "https://www.workforceaustralia.gov.au/individuals/jobs/details/2335964135"
+    },
+    {
+        "title": "Data Engineer - Data Intelligence - Team Better Data",
+        "company": "Culture Amp",
+        "location": "Sydney, New South Wales, Australia",
+        "empoyment type": "Full-time",
+        "seniority level": "Mid-Senior level",
+        "industries": [
+            "Software Development"
+        ],
+        "Job Functions": [
+            "Information Technology"
+        ],
+        "applies": 64,
+        "workplace_type": "Hybrid",
+        "description": "Join us on our mission to make a better world of work. \n\nCulture Amp is the world\u2019s leading employee experience platform, revolutionizing how 25 million employees across more than 6,500 companies create a better world of work. Culture Amp empowers companies of all sizes and industries to transform employee engagement, drive performance management, and develop high-performing teams. Powered by people science and the most comprehensive employee dataset in the world, the most innovative companies including Canva, On, Asana, Dolby, McDonalds and Nasdaq depend on Culture Amp every day.\n\nCulture Amp is backed by leading venture capital funds and has offices in the US, UK, Germany and Australia. Culture Amp has been recognized as one of the world\u2019s top private cloud companies by Forbes and most innovative companies by Fast Company.\n\nFor more information visit cultureamp.com .\n\nHow you can help make a better world of work\n\nWe are looking for a Data Engineer to join our Better Data team. We sit within the Data Intelligence Camp, where we are responsible for enriching and curating data to help build reporting and analytics capabilities for our platform, leveraging data engineering, ML engineering and data science. We\u2019re also working on levelling up Culture Amp\u2019s approach to customer-facing analytics by leveraging Clickhouse for realtime analytics, to help HR leaders use data from across the Culture Amp platform to maximise and measure the impact they have on their organisations.\n\nIn part of this team of amazing humans,\n\nYou will\n\nLead the design and build of the data pipelines that underpin our analytics products. Ensure those pipelines are tested, performant and observable.Monitor end-user performance and optimise the schemas and queries.Play a key role in promoting data best practices across the team and camp and support others to develop their own knowledge and skills. Collaborate with stakeholders to ensure we\u2019re responsibly managing our data in line with our privacy, security and compliance requirements. \n\n\nYou have\n\nExperience with cloud data warehouses such as Redshift. Skills in modelling and querying data in SQL and Python.Experience with ETL/ELT tooling including DBT and Airflow.Desirable but not essential - experience with CI/CD and infrastructure-as-code, ideally within AWS cloud. Also desirable - familiarity with AWS\u2019 data tools, including Athena, Glue, SageMaker, EMR.\n\n\nYou are\n\nA driver of technical excellence in a team environment. You\u2019re an expert in your domain and are able to develop the expertise and knowledge of those around you. Someone who loves collaboration - our teams are cross functional and you\u2019ll be working with other engineers, team leads and product managers to deliver great outcomes together.Keenly interested in understanding and solving customer problems. You think about how your work impacts our customers and improves their experienceA pragmatic engineer. You ask and understand what we're optimizing for before jumping into solutions, and can comfortably balance long-term objectives with short-term tradeoffs. Aligned with our values, check them out here: https://www.cultureamp.com/company#values and demonstrate them through your working practiceSelf-motivated and able to work independently, comfortable dealing with ambiguity when necessary. You take the initiative to ensure that you have everything you need to work effectively and ask for support when required.\n\n\nWe believe that our employees are the heartbeat of our success. We're committed to fostering a work environment that truly cares for and develops its people, and creates lasting positive impact. In addition to providing a competitive compensation package, some of the key benefits we offer are:\n\nEmployee Share Options Program: We empower you to be an owner in Culture Amp and share in our successPrograms, coaching, and budgets to help you thrive personally and professionallyAccess to external providers for mental wellbeing and coaching support to sustain the wellbeing, safety and development of our peopleMonthly Camper Life Allowance: An automatic allowance paid out each month with your pay - you can spend it however you like to help improve your experience and life outside workTeam budgets dedicated to team building activities and connectionIntentional quarterly wellbeing pauses: A quarterly company-wide shutdown day in each region to to collectively pause, reset and focus on restoration and rest, without having to tap into individual vacation timeExtended year-end breaks: An extended refresh period at the end of yearExcellent parental leave and in work support program available from day 1 of joining Culture Amp5 Social Impact Days a year to make a positive impact on the community outside of workMacBooks for you to do your best & a work from home office budget to spend on setting up your home officeMedical insurance coverage for you and your family (Available for US & UK only) \n\n\nAdditionally, we don't just focus on our internal community; we believe in creating a better world of work for all. We're committed to diversity, equity, and inclusion, with Employee Resource Groups and ally communities in place.\n\nWe have a strong commitment to Anti-Racism, and endeavor to lead by example. Every step we make as a business towards anti-racism is another step we can take to support our customers in making a better world (of work). You can see our current commitments to Anti-Racism here .\n\nPlease keep reading...\n\nResearch shows that candidates from underrepresented backgrounds often don't apply for roles if they don't meet all the criteria \u2013 unlike majority candidates meeting significantly fewer requirements.\n\nWe strongly encourage you to apply if you\u2019re interested: we'd love to know how you can amplify our team with your unique experience!\n\nThank you for taking the time to read this advert. If you decide to apply, as part of your application, we will ask you to complete voluntary diversity questions (excluding Germany). Please watch this video from our amazing DEI Leader, Aubrey Blanche to share more on why we collect the data and how we will use it.\n\nIf you require reasonable accommodations or adjustments due to a disability to complete the online application or to participate in the interview process, please contact accommodations@cultureamp. com and identify the type of accommodation or assistance you are requesting. Do not include any medical or health information in this email. The Reasonable Accommodations team will respond to your email promptly.\n\n",
+        "skills": [
+            "Airflow",
+            "Amazon Redshift",
+            "Data Engineering",
+            "Data Science",
+            "Data Warehousing",
+            "Databases",
+            "English as a Second Language (ESL)",
+            "Extract, Transform, Load (ETL)",
+            "Python (Programming Language)",
+            "SQL"
+        ],
+        "job_url": "https://www.linkedin.com/jobs/view/4071381978",
+        "if reposted": true,
+        "posted_time": "2024-12-02 10:26:50",
+        "expire_time": "2025-01-10 09:57:46",
+        "apply url": "https://boards.greenhouse.io/cultureamp/jobs/6386893?gh_src=475504ca1us&source=LinkedIn"
+    },
+    {
+        "title": "Revenue Platforms Data Engineer",
+        "company": "Google",
+        "location": "Sydney, New South Wales, Australia",
+        "empoyment type": "Full-time",
+        "seniority level": "N/A",
+        "industries": [
+            "Information Services",
+            "Technology, Information and Internet"
+        ],
+        "Job Functions": [
+            "Finance",
+            "Analyst",
+            "Accounting/Auditing"
+        ],
+        "applies": 14,
+        "workplace_type": "On-site",
+        "description": "At Google, we have a vision of empowerment and equitable opportunity for all Aboriginal and Torres Strait Islander peoples and commit to building reconciliation through Google\u2019s technology, platforms and people and we welcome Indigenous applicants. Please see our Reconciliation Action Plan for more information.Minimum qualifications:\n\nBachelor's degree in Business, Finance, a related quantitative field, or equivalent practical experience.3 years of experience with Finance systems, Accounting, Operations, Tax, Internal Controls, Requirements Documentation, Testing, and Validation.Experience in SQL/database management.Experience with Object-Oriented Programming.\n\nPreferred qualifications:\n\nExperience in collaborative coding and version control.Experience in machine learning, including data preparation, model selection, performance evaluation, and parameter tuning.Ability to deliver operational process improvements.Excellent communication and customer service skills.Passion for developing and analyzing data sets and converting them into business insights.\n\nAbout the jobIn this role your mission is to simplify and centralize the prioritization and deployment of smart, Quote-to-Report (Q2R) digitalization to deliver the Return on Investment (ROI) on Finance platforms, for Alphabet. We aim to enable Q2R systems, processes and data fit for Finance that allow every product, anywhere, anytime, the right way, effortlessly.\n\nResponsibilities\n\n Collaborate with Stakeholders, w ork with finance Subject matter experts to understand report requirements and provide necessary data solutions, access and support.Develop and Maintain Data Pipelines design and implement Extract, Transform, and Load (ETL) processes (SQL, Python) to ensure timely collection and integration of financial data from various sources. Manage Data Architecture understands internal infrastructure to select appropriate sources and technologies to manage data, and design data architecture to support financial reporting. Ensure data security and compliance.Ensure Data Quality implements data validation and cleansing processes to maintain quality data for accurate business reporting.Automate manual tasks and design data solutions. Efficiently handle volumes of financial data.\n\n\nGoogle is proud to be an equal opportunity workplace and is an affirmative action employer. We are committed to equal employment opportunity regardless of race, color, ancestry, religion, sex, national origin, sexual orientation, age, citizenship, marital status, disability, gender identity or Veteran status. We also consider qualified applicants regardless of criminal histories, consistent with legal requirements. See also Google's EEO Policy and EEO is the Law. If you have a disability or special need that requires accommodation, please let us know by completing our Accommodations for Applicants form .",
+        "skills": [
+            "Collaborative Coding",
+            "Communication",
+            "Data Analytics",
+            "Data Engineering",
+            "Data Modeling",
+            "Data Preparation",
+            "Databases",
+            "Model Selection",
+            "Product Requirements",
+            "Version Control"
+        ],
+        "job_url": "https://www.linkedin.com/jobs/view/4087397754",
+        "if reposted": false,
+        "posted_time": "2024-12-02 19:38:33",
+        "expire_time": "2025-01-01 19:38:33",
+        "apply url": "https://careers.google.com/jobs/results/101649447238148806-revenue-platforms-data-engineer/?src=Online/LinkedIn/linkedin_us&utm_source=linkedin&utm_medium=jobposting&utm_campaign=contract"
+    },
+    {
+        "title": "Junior Cloud Engineer - Canberra / Adelaide",
+        "company": "Deloitte",
+        "location": "Adelaide, South Australia, Australia",
+        "empoyment type": "Full-time",
+        "seniority level": "Entry level",
+        "industries": [
+            "Business Consulting and Services"
+        ],
+        "Job Functions": [
+            "Engineering",
+            "Information Technology"
+        ],
+        "applies": 479,
+        "workplace_type": "On-site",
+        "description": "Description:\n\n Are you a Cloud Engineer looking for a new adventure? Look no further! We're hiring in Canberra and Adelaide  Our Cloud & Engineering team is on the hunt for passionate Cloud professionals who are eager to make a positive impact with innovative solutions.  Our Cloud Engineering team at Deloitte focuses on enabling our client\u2019s end-to-end journey from on-premises or co-location to the Cloud. \n\nWe pride ourselves on our team of diverse, high performing professionals who are talented, supportive, inclusive and social - and who are at the heart of our success. Deloitte's Cloud Engineering is at the forefront of technology. We then use cloud technologies to implement world-leading innovative solutions that drive exceptional business value.\n\nWe are passionate about Cloud technology and love our work. We love to automate anything and everything and send everything to the cloud where possible. We are always looking to get ahead of the curve and constantly looking to update our skill sets.\n\nWe listen to each other and pride ourselves in delivering the best possible solution and most importantly, we love to have fun.\n\n We are seeking a motivated and adaptable Junior Cloud Engineer who can join our dynamic team. Due to the nature of the role, candidates with a baseline clearance are only considered. \n\n What will your typical day look like? \n\nAs a member of our Cloud Engineering team, the type of work you will be involved in include:\n\n Design & Build Native Cloud Applications and Architecture  Be part of a team that will design & deliver conceptual architecture and technical solutions that leverages the most innovative Cloud Solutions from AWS, Microsoft and GCP  Working with our customers on Cloud migrations, transformations, and optimisation initiatives and more.  Deliver secure cloud-based solutions that are also scalable and leverage high availability.  Delivering advanced capabilities and services related to Cloud infrastructure, security, continuous integration, continuous deployment, and IT operations. \n\nEnough About Us, Let\u2019s Talk About You.\n\nIf you are someone looking to build your cloud engineering skills and grow within a fast-paced environment read along!\n\n Familiarity with a least one of the major cloud platforms (AWS, Azure, GCP)  Knowledge of Infrastructure-as-code (IaC) tools  Some exposure to scripting languages (Python, Bash etc) for automation and cloud management  Familiarity with CI/CD pipelines and cloud native development practices.  Understanding of cloud security principles and best practices  Strong problem-solving skills and the ability to troubleshoot issues in cloud environment.  Excellent communications skills and a willingness to learn and grow in the field. \n\n Why Deloitte? \n\n At Deloitte, we focus our energy on interesting and impactful work.  We\u2019re always learning, innovating and setting the standard; making a positive difference to our clients and our society. We putcoaching at the heart of what we do, helping our people grow their careers in any direction \u2013 whether it be up, moving into something new, or even moving across the world.\n\n We embrace diversity, equity and inclusion.  We have a diverse collection of people from different backgrounds, with different experiences, gender identities, abilities and thinking styles. What binds us together is a shared commitment to value everyone\u2019s perspective and to cultivate inclusion; so that our work environment is a safe space we can all belong.\n\n We prioritise flexibility and choice.  At Deloitte, you get trust on Day 1. We know our people get their best work done when they\u2019re in control of where and how they work, designing their work week around their client, team and personal commitments.\n\n We help you live and work well.  To support your personal and professional life, we offer a range of perks and benefits, including retail discounts, wellbeing leave, paid volunteering days, twelve flexible working options, market-leading parental leave and return to work support package.\n\n Next Steps \n\nSound like the sort of role for you? Apply now, we\u2019d love to hear from you!\n\nBy applying for this job, you\u2019ll be assessed against the Deloitte Talent Standards. We\u2019ve designed these standards so that you can grow in your career, and we can provide our clients with a consistent and exceptional Deloitte employee experience globally. The preferred candidate will be subject to background screening by Deloitte or by their external third-party provider.\n\nBy applying for this job, you\u2019ll be assessed against the Deloitte Talent Standards. We\u2019ve designed these standards so that you can grow in your career, and we can provide our clients with a consistent and exceptional Deloitte employee experience globally. The preferred candidate will be subject to background screening by Deloitte or by their external third-party provider",
+        "skills": [
+            "Amazon Web Services (AWS)",
+            "Cloud Computing",
+            "Cloud Development",
+            "Cloud Security",
+            "Cloud-Native Applications",
+            "Communication",
+            "Google Cloud Platform (GCP)",
+            "Infrastructure as code (IaC)",
+            "Microsoft Azure",
+            "Problem Solving"
+        ],
+        "job_url": "https://www.linkedin.com/jobs/view/4055680540",
+        "if reposted": true,
+        "posted_time": "2024-12-02 10:31:08",
+        "expire_time": "2025-01-19 01:03:13",
+        "apply url": "https://jobs.deloitte.com.au/job/Canberra-Junior-Cloud-Engineer-Canberra-Adelaide-ACT/1054824466/?utm_source=LINKEDIN&utm_medium=referrer"
     }
 ]
