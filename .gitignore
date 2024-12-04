@@ -6,3 +6,5 @@ poetry.lock
 playground*
 *.jr
 crawler/Jasper/.DS_Store
+__pycache__/
+data/chromadb/
