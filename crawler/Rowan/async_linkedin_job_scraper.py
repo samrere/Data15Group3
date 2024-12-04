@@ -26,9 +26,9 @@ def load_cookies(email: str) -> Dict:
         return pickle.load(f)
 
 # Initialize accounts with cookies
-email1 = "ron87190@gmail.com"
-email2 = "data15group3@gmail.com"
-email3 = "data15group3sub1@gmail.com"
+email1 = "data15group3@gmail.com"
+email2 = "ron87190@gmail.com"
+email3 = "elizkoko07@gmail.com"
 
 api1 = Linkedin(email1, "", cookies=load_cookies(email1))
 print("Account 1 authenticated")
@@ -42,7 +42,6 @@ async def search_jobs(api: Linkedin, search_params: Dict) -> List[Dict]:
     search_func = partial(api.search_jobs, 
                          keywords=search_params['keywords'],
                          location_name=search_params['location_name'],
-                         count=search_params['count'],
                          limit=search_params['limit'])
     return await asyncio.get_event_loop().run_in_executor(None, search_func)
 
@@ -113,11 +112,19 @@ async def process_job(job: Dict) -> Dict:
             or "N/A"
         )
 
+        # Extract companyid
+        company_id = job_details.get("companyDetails").get('com.linkedin.voyager.deco.jobs.web.shared.WebJobPostingCompany', 
+                                                           {}).get('companyResolutionResult', {}).get('entityUrn', '').split(':')[-1]
+        # Extract company_url
+        company_url = job_details.get("companyDetails").get('com.linkedin.voyager.deco.jobs.web.shared.WebJobPostingCompany', 
+                                                            {}).get('companyResolutionResult', {}).get('url')
         # Compile job information
         job_info = {
             "title": job.get('title', "N/A"),
             "company": company,
             "location": location,
+            "company_id":company_id,
+            "company_url":company_url,
             "employment_type": job_details.get('formattedEmploymentStatus', "N/A"),
             "seniority_level": job_details.get('formattedExperienceLevel', "N/A"),
             "industries": job_details.get('formattedIndustries', "N/A"),
@@ -144,9 +151,8 @@ async def main():
     """Main function to orchestrate job scraping"""
     search_params = {
         'keywords': 'data engineer',
-        'location_name': 'Sydney',
-        'count': 25,
-        'limit': 30
+        'location_name': 'Australia',
+        'limit': 10
     }
     
     try:
@@ -155,11 +161,11 @@ async def main():
         jobs = await search_jobs(api1, search_params)
         print(f"Found {len(jobs)} jobs.")
         
-        # Process all jobs in parallel
-        results = await asyncio.gather(*[process_job(job) for job in jobs])
-        
-        # Filter out None results (failed jobs)
-        all_jobs = [job for job in results if job is not None]
+        all_jobs = []
+        for job in jobs:
+            result = await process_job(job)
+            if result is not None:
+                all_jobs.append(result)
         
         # Save to JSON file
         output_file = "linkedin_jobs.json"
