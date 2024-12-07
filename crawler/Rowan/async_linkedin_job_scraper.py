@@ -1,14 +1,55 @@
 import asyncio
 import pickle
 import json
+import random
+import os
+from datetime import datetime
 import logging
 import time
+from time import sleep
 from linkedin_api import Linkedin
 from functools import partial
 from typing import Dict, List
 
+# Load config
+def load_config():
+    with open('config.json', 'r') as f:
+        return json.load(f)
+
+config = load_config()
+
+
+#Patch LinkedIn API functions
+def custom_evade():
+    """Custom method to evade suspension with configurable delay."""
+    sleep(random.randint(
+        config['sleep_times']['min'],
+        config['sleep_times']['max']
+    ))
+
+def patched_get_job(self, job_id: str) -> Dict:
+    """Fetch data about a given job with configured decoration ID."""
+    params = {
+        "decorationId": config['api_settings']['job_decoration_id'],
+    }
+    res = self._fetch(f"/jobs/jobPostings/{job_id}", params=params)
+    data = res.json()
+    if data and "status" in data and data["status"] != 200:
+        self.logger.info("request failed: {}".format(data["message"]))
+        return {}
+    return data
+
+# Apply patches
+import linkedin_api.linkedin as linkedin_module
+linkedin_module.default_evade = custom_evade
+linkedin_module.Linkedin.get_job = patched_get_job
+
+
+
 # Setup logging for errors and debugging
 logging.basicConfig(filename='job_scraper_errors.log', level=logging.ERROR)
+
+timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
 
 def get_workplace_type(workplace_types: List[str]) -> str:
     """Map workplace type URN to readable format"""
@@ -25,16 +66,24 @@ def load_cookies(email: str) -> Dict:
     with open(cookies_file, "rb") as f:
         return pickle.load(f)
 
-# Initialize accounts with cookies
-email1 = "data15group3@gmail.com"
-email2 = "ron87190@gmail.com"
-email3 = "elizkoko07@gmail.com"
+# authenticate api
 
-api1 = Linkedin(email1, "", cookies=load_cookies(email1))
+api1 = Linkedin(config['accounts']['account1']['email'], 
+                "", 
+                cookies=load_cookies(config['accounts']['account1']['email'])
+                )
 print("Account 1 authenticated")
-api2 = Linkedin(email2, "", cookies=load_cookies(email2))
+
+api2 = Linkedin(config['accounts']['account2']['email'], 
+                "", 
+                cookies=load_cookies(config['accounts']['account2']['email'])
+                )
 print("Account 2 authenticated")
-api3 = Linkedin(email3, "", cookies=load_cookies(email3))
+
+api3 = Linkedin(config['accounts']['account3']['email'], 
+                "", 
+                cookies=load_cookies(config['accounts']['account3']['email'])
+                )
 print("Account 3 authenticated")
 
 async def search_jobs(api: Linkedin, search_params: Dict) -> List[Dict]:
@@ -42,7 +91,10 @@ async def search_jobs(api: Linkedin, search_params: Dict) -> List[Dict]:
     search_func = partial(api.search_jobs, 
                          keywords=search_params['keywords'],
                          location_name=search_params['location_name'],
-                         limit=search_params['limit'])
+                         limit=search_params['limit'],
+                         listed_at=search_params['listed_at']
+                         #offset=search_params['offset'] 
+                         )
     return await asyncio.get_event_loop().run_in_executor(None, search_func)
 
 async def get_job_details(api: Linkedin, job_id: str) -> Dict:
@@ -114,10 +166,19 @@ async def process_job(job: Dict) -> Dict:
 
         # Extract companyid
         company_id = job_details.get("companyDetails").get('com.linkedin.voyager.deco.jobs.web.shared.WebJobPostingCompany', 
-                                                           {}).get('companyResolutionResult', {}).get('entityUrn', '').split(':')[-1]
+                                                           {}).get('companyResolutionResult', 
+                                                                   {}).get('entityUrn', '').split(':')[-1]
         # Extract company_url
         company_url = job_details.get("companyDetails").get('com.linkedin.voyager.deco.jobs.web.shared.WebJobPostingCompany', 
                                                             {}).get('companyResolutionResult', {}).get('url')
+        
+        # store JD into json
+        """
+        description = job_details.get('description', {}).get('text', "N/A")
+        description_file = os.path.join("JD_test", f"{job_id}.json")
+        with open(description_file, 'w') as f:
+            json.dump({"description": description}, f, indent=4)
+        """
         # Compile job information
         job_info = {
             "title": job.get('title', "N/A"),
@@ -131,7 +192,7 @@ async def process_job(job: Dict) -> Dict:
             "job_functions": job_details.get('formattedJobFunctions', "N/A"),
             "applies": job_details.get('applies', "N/A"),
             "workplace_type": get_workplace_type(job_details.get('workplaceTypes', [])),
-            "description": job_details.get('description', {}).get('text', "N/A"),
+            #"description": job_details.get('description', {}).get('text', "N/A"),
             "skills": skills,
             "job_url": f"https://www.linkedin.com/jobs/view/{job_id}",
             "reposted": job.get('repostedJob', "N/A"),
@@ -149,26 +210,28 @@ async def process_job(job: Dict) -> Dict:
 
 async def main():
     """Main function to orchestrate job scraping"""
-    search_params = {
-        'keywords': 'data engineer',
-        'location_name': 'Australia',
-        'limit': 10
-    }
-    
+
     try:
+
+        all_jobs = []
+        
         # Get initial job listings using first account
         print("\nSearching for jobs...")
-        jobs = await search_jobs(api1, search_params)
-        print(f"Found {len(jobs)} jobs.")
+
+
+
+        jobs = await search_jobs(api1, config['search_params'])
+        print(f"Found {len(jobs)} jobs")
         
-        all_jobs = []
+        
         for job in jobs:
             result = await process_job(job)
             if result is not None:
                 all_jobs.append(result)
         
         # Save to JSON file
-        output_file = "linkedin_jobs.json"
+
+        output_file = f"linkedin_jobs_{config['search_params']['keywords'].replace(' ', '_')}_{timestamp}.json"
         with open(output_file, 'w') as f:
             json.dump(all_jobs, f, indent=4)
         

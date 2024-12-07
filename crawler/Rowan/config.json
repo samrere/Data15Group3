@@ -1,0 +1,30 @@
+{
+    "sleep_times": {
+        "min": 2,
+        "max": 4
+    },
+    "api_settings": {
+        "job_decoration_id": "com.linkedin.voyager.deco.jobs.web.shared.WebFullJobPosting-65",
+        "number_of_pages": 20
+    },
+    "search_params": {
+        "keywords": "Software Engineer",
+        "location_name": "Australia",
+        "limit": 40,
+        "listed_at": 31536000
+    },
+    "accounts": {
+        "account1": {
+            "email": "data15group3@gmail.com",
+            "cookie_file": "data15group3@gmail.com.jr"
+        },
+        "account2": {
+            "email": "ron87190@gmail.com",
+            "cookie_file": "ron87190@gmail.com.jr"
+        },
+        "account3": {
+            "email": "elizkoko07@gmail.com",
+            "cookie_file": "elizkoko07@gmail.com.jr"
+        }
+    }
+}
