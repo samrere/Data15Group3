@@ -1,4 +1,7 @@
 # Data15Group3
+Data Modeling repo: ...  
+RAG repo: ...
+
 ## Standard
 ### Branching:  
 [prefix]/[ticket-number]-[task-name]  
