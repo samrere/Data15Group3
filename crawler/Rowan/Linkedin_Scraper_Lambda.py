@@ -53,6 +53,10 @@ def patched_get_job(self, job_id: str) -> Dict:
         return {}
     return data
 
+import linkedin_api.linkedin as linkedin_module
+linkedin_module.default_evade = custom_evade
+linkedin_module.Linkedin.get_job = patched_get_job
+
 # Set up logging
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
