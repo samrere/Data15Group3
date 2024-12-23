@@ -1,20 +1,16 @@
-# Configure AWS Provider
 provider "aws" {
-  region = "ap-southeast-2" # Change to your desired region
+  region = var.aws_region
 }
 
-# Create AWS Glue Database
 resource "aws_glue_catalog_database" "jobs_database" {
-  name        = "jobs_database_test"
+  name        = var.database_name
   description = "Database for job information data in Parquet format"
 }
 
-# Create AWS Glue Table Schema
 resource "aws_glue_catalog_table" "jobs_table" {
-  name          = "cleaned_jobs_data"
+  name          = var.table_name
   database_name = aws_glue_catalog_database.jobs_database.name
-
-  table_type = "EXTERNAL_TABLE"
+  table_type    = "EXTERNAL_TABLE"
 
   parameters = {
     EXTERNAL              = "TRUE"
@@ -23,8 +19,28 @@ resource "aws_glue_catalog_table" "jobs_table" {
     "connectionName"      = ""
   }
 
+  partition_keys {
+    name = "year"
+    type = "string"
+  }
+
+  partition_keys {
+    name = "month"
+    type = "string"
+  }
+
+  partition_keys {
+    name = "day"
+    type = "string"
+  }
+
+  partition_keys {
+    name = "keyword"
+    type = "string"
+  }
+
   storage_descriptor {
-    location      = "s3://crawler-test-rowan/data/" # Replace with your S3 bucket path
+    location      = "s3://${var.s3_bucket_name}/${var.s3_base_path}/"
     input_format  = "org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat"
     output_format = "org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat"
 
@@ -32,7 +48,10 @@ resource "aws_glue_catalog_table" "jobs_table" {
       serialization_library = "org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe"
     }
 
-
+    columns {
+      name = "job_id"
+      type = "string"
+    }
     columns {
       name = "title"
       type = "string"
@@ -62,10 +81,6 @@ resource "aws_glue_catalog_table" "jobs_table" {
       type = "array<string>"
     }
     columns {
-      name = "applies"
-      type = "bigint"
-    }
-    columns {
       name = "workplace_type"
       type = "string"
     }
@@ -90,16 +105,8 @@ resource "aws_glue_catalog_table" "jobs_table" {
       type = "string"
     }
     columns {
-      name = "posted_time_epoch"
-      type = "bigint"
-    }
-    columns {
       name = "expire_time"
       type = "string"
-    }
-    columns {
-      name = "expire_time_epoch"
-      type = "bigint"
     }
     columns {
       name = "apply_url"
@@ -108,20 +115,42 @@ resource "aws_glue_catalog_table" "jobs_table" {
   }
 }
 
-# Rest of the configuration (IAM roles and crawler) remains the same
+# Create Glue Security Configuration
+resource "aws_glue_security_configuration" "crawler_security" {
+  name = "glue-security-config"
+
+  encryption_configuration {
+    cloudwatch_encryption {
+      cloudwatch_encryption_mode = "DISABLED"
+    }
+
+    job_bookmarks_encryption {
+      job_bookmarks_encryption_mode = "DISABLED"
+    }
+
+    s3_encryption {
+      s3_encryption_mode = "SSE-S3"
+    }
+  }
+}
+
+
 resource "aws_glue_crawler" "jobs_crawler" {
   database_name = aws_glue_catalog_database.jobs_database.name
-  name          = "jobs_data_crawler"
-  role          = "arn:aws:iam::863518414180:role/imba-glue-crawler-GlueServiceRole-DNd83nj237Wi" # Replace with your existing role ARN
-
+  name          = var.crawler_name
+  role          = var.crawler_role_arn
+  security_configuration = aws_glue_security_configuration.crawler_security.name
+ 
   s3_target {
-    path = "s3://crawler-test-rowan/data/" # Replace with your S3 bucket path
+    path = "s3://${var.s3_bucket_name}/${var.s3_base_path}/"
   }
 
   schema_change_policy {
     delete_behavior = "LOG"
-    update_behavior = "UPDATE_IN_DATABASE"
+    update_behavior = "LOG"
   }
 
-  #schedule = "cron(0 12 * * ? *)" # Runs daily at 12:00 PM UTC
+  recrawl_policy {
+    recrawl_behavior = "CRAWL_NEW_FOLDERS_ONLY"
+  }
 }
