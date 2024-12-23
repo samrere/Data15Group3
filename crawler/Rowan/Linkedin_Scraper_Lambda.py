@@ -4,7 +4,7 @@ import json
 import random
 import os
 import boto3
-from datetime import datetime
+from datetime import datetime, timezone
 import logging
 import time
 from time import sleep
@@ -15,6 +15,28 @@ import pandas as pd
 
 """
 https://github.com/tomquirk/linkedin-api
+"""
+
+"""
+Lambda Invocation Flow:
+
+1. lambda_handler (Synchronous Entry Point)
+   ↓
+2. asyncio.run()
+   ↓
+3. async_lambda_handler (Async Implementation)
+     ↓
+     Initialize 3 LinkedIn APIs
+     ↓
+     Search Jobs (api1)
+        ↓
+        For each job found:
+          ├→ Get Job Details (api2)  ─┐ (in parallel)
+          └→ Get Job Skills (api3)   ─┘
+          ↓
+        Process & Combine Results
+     ↓
+     Save to S3 as Parquet
 """
 
 # Initialize AWS clients
@@ -89,8 +111,14 @@ def load_cookies(account_key: str) -> Dict:
 async def async_lambda_handler(event, context):
     """Async Lambda function handler"""
     try:
+        # Extract keyword from event
+        keyword = event.get('keyword')
+        if not keyword:
+            raise ValueError("No keyword provided in event")
+            
         # Load config and initialize APIs
         config = load_config()
+        config['search_params']['keywords'] = keyword
         
         # Initialize LinkedIn clients
         api1 = Linkedin(config['accounts']['account1']['email'], "", 
@@ -168,14 +196,8 @@ async def async_lambda_handler(event, context):
                     for skill_status in job_skills.get('skillMatchStatuses', [])
                 ] if 'skillMatchStatuses' in job_skills else ["Skills not listed"]
 
-                # Process timestamps
-                listed_at = job.get('listedAt') or job_details.get('listedAt')
-                post_time = time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(listed_at / 1000)) if listed_at else "N/A"
+                # Listed time & Expire time
                 listed_at_epoch = job.get('listedAt') or job_details.get('listedAt')
-
-
-                expire_at = job.get('expireAt') or job_details.get('expireAt')
-                expire_time = time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(expire_at / 1000)) if expire_at else "N/A"
                 expire_at_epoch = job.get('expireAt') or job_details.get('expireAt')
 
                 # Extract apply URL
@@ -185,27 +207,6 @@ async def async_lambda_handler(event, context):
                     or apply_method.get("com.linkedin.voyager.jobs.OffsiteApply", {}).get("companyApplyUrl")
                     or "N/A"
                 )
-                """
-                # Extract companyid
-                company_id = job_details.get("companyDetails").get('com.linkedin.voyager.deco.jobs.web.shared.WebJobPostingCompany', 
-                                                                {}).get('companyResolutionResult', 
-                                                                        {}).get('entityUrn', '').split(':')[-1]
-                # Extract company_url
-                company_url = job_details.get("companyDetails").get('com.linkedin.voyager.deco.jobs.web.shared.WebJobPostingCompany', 
-                                                                    {}).get('companyResolutionResult', {}).get('url')
-                """
-
-                """
-                # store JD into json
-                directory_name = f"JD_{config['search_params']['keywords'].replace(' ', '_')}"
-                os.makedirs(directory_name, exist_ok=True)
-
-                description = job_details.get('description', {}).get('text', "N/A")
-                description_file = os.path.join(directory_name, f"{job_id}.json")
-
-                with open(description_file, 'w') as f:
-                    json.dump({"description": description}, f, indent=4)
-                """
 
                 # Compile job information
                 job_info = {
@@ -213,32 +214,23 @@ async def async_lambda_handler(event, context):
                     "title": job.get('title', "N/A"),
                     "company": company,
                     "location": location,
-                    #"company_id":company_id,
-                    #"company_url":company_url,
                     "employment_type": job_details.get('formattedEmploymentStatus', "N/A"),
                     "seniority_level": job_details.get('formattedExperienceLevel', "N/A"),
                     "industries": job_details.get('formattedIndustries', "N/A"),
                     "job_functions": job_details.get('formattedJobFunctions', "N/A"),
-                    "applies": job_details.get('applies', "N/A"),
                     "workplace_type": get_workplace_type(job_details.get('workplaceTypes', [])),
-                    #"description": job_details.get('description', {}).get('text', "N/A"),
+                    "description": job_details.get('description', {}).get('text', "N/A"),
                     "skills": skills,
                     "job_url": f"https://www.linkedin.com/jobs/view/{job_id}",
                     "reposted": job.get('repostedJob', "N/A"),
-                    "posted_time": post_time,
-                    "posted_time_epoch": listed_at_epoch,
-                    "expire_time": expire_time,
-                    "expire_time_epoch": expire_at_epoch,
+                    "posted_time": listed_at_epoch,
+                    "expire_time": expire_at_epoch,
                     "apply_url": apply_url
                 }
 
-                JD_info = {
-                    "job_id": job_id,
-                    "description": job_details.get('description', {}).get('text', "N/A")
-                }
 
                 logger.info(f"Processed job: {job_info['title']} at {job_info['company']}")
-                return job_info, JD_info
+                return job_info
 
             except Exception as e:
                 logger.error(f"Error processing job {job_id}: {str(e)}")
@@ -246,8 +238,10 @@ async def async_lambda_handler(event, context):
 
         # Main processing
         all_jobs = []
-        all_JDs = []
-        #all_descriptions = []
+        seen_in_current_search = set() # used for deduplication during pagination
+        current_time = int(time.time())
+        past_time = current_time-86400
+
         base_params = config['search_params'].copy()
         
         logger.info("Starting job search...")
@@ -263,54 +257,50 @@ async def async_lambda_handler(event, context):
             for job in jobs:
                 result = await process_job(job)
                 if result is not None:
-                    job_info, JD_info = result
+                    job_info = result
+                    # check scraping time window to avoid duplication caused by newly posted jobs during running time
+                    if not (past_time <= int(job_info['posted_time']/1000) <= current_time):
+                        logger.info(f"Job {job_info['job_id']} posted time {job_info['posted_time']} is outside window {past_time} - {current_time}")
+                        continue
+                    # avoid duplication caused by "existing jobs get pushed to later pages when new job postings during pagination"
+                    if job_info['job_id'] in seen_in_current_search:
+                        logger.info(f"Skipping duplicate job {job_info['job_id']} in current search")
+                        continue
+                    seen_in_current_search.add(job_info['job_id'])
                     all_jobs.append(job_info)
-                    all_JDs.append(JD_info)
+                
 
             if len(jobs) < config['search_params']['limit']:
                 logger.info(f"Found {len(jobs)} jobs which is less than limit {config['search_params']['limit']}, stopping search...")
                 break
 
         # Save results to S3
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        jobs_base_key = f"raw/{config['search_params']['keywords'].replace(' ', '_')}/{timestamp}"
-        JDs_base_key = f"raw/{config['search_params']['keywords'].replace(' ', '_')}/{timestamp}"
-        """
-        # Save jobs JSON
-        jobs_json = json.dumps(all_jobs, indent=4)
-        s3.put_object(
-            Bucket=os.environ['LINKEDIN_OUTPUT_KEY'],
-            Key=f"{base_key}/jobs.json",
-            Body=jobs_json
-        )
-        """
+        current_date = datetime.now(timezone.utc)
+        year = current_date.strftime('%Y')
+        month = current_date.strftime('%m')
+        day = current_date.strftime('%d')
+        keyword = config['search_params']['keywords'].replace(' ', '_')
+        jobs_base_key = f"{year}/{month}/{day}/{keyword}"
+        file_name = f"{keyword}-{year}{month}{day}.parquet"
+
+
         # Save jobs parquet
         df_jobs = pd.DataFrame(all_jobs)
-        jobs_parquet = df_jobs.to_parquet()
+        jobs_parquet = df_jobs.to_parquet(compression='snappy')
         s3.put_object(
             Bucket=os.environ['LINKEDIN_DATALAKE_KEY'],
-            Key=f"{jobs_base_key}/jobs_info.parquet",
+            Key=f"raw/{jobs_base_key}/{file_name}",
             Body=jobs_parquet
         )
         logger.info(f"Job data saved to S3: s3://{os.environ['LINKEDIN_DATALAKE_KEY']}/{jobs_base_key}/")
 
-        # Save descriptions parquet
-        df_JDs = pd.DataFrame(all_JDs)
-        descriptions_parquet = df_JDs.to_parquet()
-        s3.put_object(
-            Bucket=os.environ['LINKEDIN_JD_KEY'],
-            Key=f"{JDs_base_key}/JDs.parquet",
-            Body=descriptions_parquet
-        )
-        logger.info(f"JD data saved to S3: s3://{os.environ['LINKEDIN_JD_KEY']}/{JDs_base_key}/")
         
         return {
             'statusCode': 200,
             'body': json.dumps({
                 'message': 'Successfully processed jobs',
                 'jobs_processed': len(all_jobs),
-                'datalake_path': f"s3://{os.environ['LINKEDIN_DATALAKE_KEY']}/{jobs_base_key}/",
-                'JD_path': f"s3://{os.environ['LINKEDIN_JD_KEY']}/{jobs_base_key}/",
+                'datalake_path': f"s3://{os.environ['LINKEDIN_DATALAKE_KEY']}/{jobs_base_key}/"
             })
         }
         
@@ -324,3 +314,5 @@ def lambda_handler(event, context):
 
 if __name__ == "__main__":
     lambda_handler(None, None)
+
+
