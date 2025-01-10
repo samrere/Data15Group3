@@ -14,8 +14,7 @@ resource "aws_glue_catalog_table" "jobs_table" {
 
   parameters = {
     EXTERNAL              = "TRUE"
-    "classification"      = "parquet"
-    "parquet.compression" = "SNAPPY"
+    "classification"      = "avro"
     "connectionName"      = ""
   }
 
@@ -41,11 +40,11 @@ resource "aws_glue_catalog_table" "jobs_table" {
 
   storage_descriptor {
     location      = "s3://${var.s3_bucket_name}/${var.s3_base_path}/"
-    input_format  = "org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat"
-    output_format = "org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat"
+    input_format  = "org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat"
+    output_format = "org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat"
 
     ser_de_info {
-      serialization_library = "org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe"
+      serialization_library = "org.apache.hadoop.hive.serde2.avro.AvroSerDe"
     }
 
     columns {
@@ -102,11 +101,11 @@ resource "aws_glue_catalog_table" "jobs_table" {
     }
     columns {
       name = "posted_time"
-      type = "string"
+      type = "bigint"
     }
     columns {
       name = "expire_time"
-      type = "string"
+      type = "bigint"
     }
     columns {
       name = "apply_url"
@@ -140,17 +139,26 @@ resource "aws_glue_crawler" "jobs_crawler" {
   name          = var.crawler_name
   role          = var.crawler_role_arn
   security_configuration = aws_glue_security_configuration.crawler_security.name
- 
-  s3_target {
-    path = "s3://${var.s3_bucket_name}/${var.s3_base_path}/"
-  }
 
+  catalog_target {
+    database_name = aws_glue_catalog_database.jobs_database.name
+    tables        = [aws_glue_catalog_table.jobs_table.name]
+  }
+  configuration = jsonencode(
+    {
+      Grouping = {
+        TableGroupingPolicy = "CombineCompatibleSchemas"
+      }
+      CrawlerOutput = {
+        Partitions = { AddOrUpdateBehavior = "InheritFromTable" }
+      }
+      Version = 1
+    }
+  )
+  
   schema_change_policy {
     delete_behavior = "LOG"
     update_behavior = "LOG"
   }
 
-  recrawl_policy {
-    recrawl_behavior = "CRAWL_NEW_FOLDERS_ONLY"
-  }
 }
