@@ -1,0 +1,48 @@
+name: Deploy CloudFormation Stacks
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  cfn-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 2 # Fetch the last two commits, used to comparing diff
+
+      - name: Configure AWS credentials
+        id: creds
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-southeast-2
+
+      - name: Run upload script
+        run: sh scripts/shell/upload_to_s3.sh data14group1-scripts
+
+      - name: Deploy CloudFormation Stack
+        id: deploy-stack
+        uses: aws-actions/aws-cloudformation-github-deploy@v1.0.3
+        with:
+          name: deploy-stack
+          template: cloudformation/root.yml
+          parameter-overrides: |
+            scriptsBucket=data14group1-scripts,
+            rawBucket=data14group1-raw,
+            stagingBucket=data14group1-staging,
+            transformedBucket=data14group1-transformed,
+            mlBucket=data14group1-ml,
+            lambdaRaw2stagingVersion=${{ env.LAMBDA_RAW2STAGING_VERSION }},
+            kmsKeyForDEArn=${{ secrets.KMS_KEY_DE_ARN }},
+            kmsKeyForMLArn=${{ secrets.KMS_KEY_ML_ARN }}
+          capabilities: CAPABILITY_IAM,CAPABILITY_NAMED_IAM
+          no-fail-on-empty-changeset: "1"

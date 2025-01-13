@@ -1,7 +1,6 @@
 # Data15Group3
-Orchestration repo: https://github.com/samrere/samrere-Data15Group3-Orchestration  
-Data Modeling repo: https://github.com/datagroup-dbt/datagroup-dbt  
-RAG repo: https://github.com/samrere/Data15Group3-RAG  
+Data Modeling repo: ...  
+RAG repo: ...
 
 ## Standard
 ### Branching:  

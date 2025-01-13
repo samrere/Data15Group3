@@ -1,0 +1,6 @@
+TEMPLATES:
+	glue catalog
+	lambda: Python版本要和本地zip时用的一样
+	iam
+
+

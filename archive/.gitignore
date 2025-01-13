@@ -1,0 +1,16 @@
+.ipynb_checkpoints
+.idea
+.env
+pyproject.toml
+poetry.lock
+playground*
+*.jr
+crawler/Jasper/.DS_Store
+__pycache__/
+data/chromadb/
+job-data-lake-terraform/.terraform/providers/registry.terraform.io/hashicorp/aws/5.80.0/windows_386/LICENSE.txt
+job-data-lake-terraform/.terraform.lock.hcl
+job-data-lake-terraform/.terraform/providers/registry.terraform.io/hashicorp/aws/5.80.0/windows_386/terraform-provider-aws_v5.80.0_x5.exe
+job-data-lake-terraform/terraform.tfstate
+
+test.py
