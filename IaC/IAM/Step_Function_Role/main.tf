@@ -33,9 +33,9 @@ resource "aws_iam_role_policy" "lambda_invocation_policy" {
           "lambda:InvokeFunction"
         ]
         Resource = [
-          "arn:aws:lambda:ap-southeast-2:863518414180:function:ValidityCheck-starter",
-          "arn:aws:lambda:ap-southeast-2:863518414180:function:ValidityCheck-worker",
-          "arn:aws:lambda:ap-southeast-2:863518414180:function:ValidityCheck-collector"
+          "arn:aws:lambda:ap-southeast-2:339713004220:function:ValidityCheck-starter",
+          "arn:aws:lambda:ap-southeast-2:339713004220:function:ValidityCheck-worker",
+          "arn:aws:lambda:ap-southeast-2:339713004220:function:ValidityCheck-collector"
         ]
       }
     ]
