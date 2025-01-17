@@ -35,7 +35,7 @@ jobs:
         working-directory: IaC/IAM/Glue_Crawler_Role
         run: |
           terraform init
-          terraform validate
+          terraform import aws_iam_role.glue_crawler_role AWSGlueServiceRole-DATA15Crawler || echo "Import failed or role already in state"
           terraform plan -out=tfplan-iam-crawler-role
           TIMESTAMP=$(date +%Y%m%d%H%M%S)
           aws s3 cp tfplan-iam-crawler-role s3://${{ github.event.inputs.s3_bucket }}/${{ github.event.inputs.s3_path }}/tfplan-iam-crawler-role-${TIMESTAMP}
@@ -46,8 +46,19 @@ jobs:
         working-directory: IaC/IAM/Lambda_Role
         run: |
           terraform init
-          terraform validate
+          terraform import aws_iam_role.lambda_role LambdaWebApiRole-DATA15 || echo "Import failed or role already in state"
           terraform plan -out=tfplan-iam-lambda-role
           TIMESTAMP=$(date +%Y%m%d%H%M%S)
           aws s3 cp tfplan-iam-lambda-role s3://${{ github.event.inputs.s3_bucket }}/${{ github.event.inputs.s3_path }}/tfplan-iam-lambda-role-${TIMESTAMP}
           terraform apply -auto-approve tfplan-iam-lambda-role
+
+      # Deploy StepFuction Role
+      - name: Deploy SFN Role
+        working-directory: IaC/IAM/Step_Function_Role
+        run: |
+          terraform init
+          terraform import aws_iam_role.lambda_invocation_role StepFunctionsLambdaRole-DATA15 || echo "Import failed or role already in state"
+          terraform plan -out=tfplan-iam-stepfunction-role
+          TIMESTAMP=$(date +%Y%m%d%H%M%S)
+          aws s3 cp tfplan-iam-stepfunction-role s3://${{ github.event.inputs.s3_bucket }}/${{ github.event.inputs.s3_path }}/tfplan-iam-stepfunction-role-${TIMESTAMP}
+          terraform apply -auto-approve tfplan-iam-stepfunction-role
