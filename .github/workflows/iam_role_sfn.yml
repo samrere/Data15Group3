@@ -29,7 +29,15 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-southeast-2
-
+          
+      # Delete existing resources using AWS CLI
+      - name: Delete Existing Role and Policy
+        run: |
+          # Delete the inline policy first
+          aws iam delete-role-policy --role-name StepFunctionsLambdaRole-DATA15 --policy-name LambdaInvocationPolicy || true
+          # Delete the role
+          aws iam delete-role --role-name StepFunctionsLambdaRole-DATA15 || true
+          
       # Deploy StepFuction Role
       - name: Deploy SFN Role
         working-directory: IaC/IAM/Step_Function_Role
