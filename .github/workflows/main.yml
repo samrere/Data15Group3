@@ -89,20 +89,26 @@ jobs:
             echo "Initializing Terraform..."
             terraform init
             
-            # Check if Lambda already exists
+            # Check if Lambda and CloudWatch log group exist
             if aws lambda get-function --function-name $FUNC_NAME >/dev/null 2>&1; then
               echo "Importing existing Lambda resources..."
               terraform import aws_lambda_function.$FUNC_NAME $FUNC_NAME || true
-              terraform import aws_cloudwatch_log_group.lambda_log_group "/aws/lambda/$FUNC_NAME" || true
-            else
-              echo "Lambda function doesn't exist, will create new one"
             fi
 
-            echo "plan and upload the plan to data15group3-execution-plans"
+            # Separate check for CloudWatch log group
+            if aws logs describe-log-groups --log-group-name-prefix "/aws/lambda/$FUNC_NAME" \
+              --query 'logGroups[0].logGroupName' --output text 2>/dev/null; then
+              echo "Importing existing CloudWatch log group..."
+              terraform import aws_cloudwatch_log_group.lambda_log_group "/aws/lambda/$FUNC_NAME" || true
+            fi
             
-            terraform plan -out=tfplan-$FUNC_NAME
+            echo "Planning and uploading the plan to data15group3-execution-plans..."
             TIMESTAMP=$(date +%Y%m%d%H%M%S)
-            aws s3 cp tfplan-$FUNC_NAME s3://data15group3-execution-plans/lambda/tfplan-$FUNC_NAME-${TIMESTAMP}
+            PLAN_FILE="tfplan-$FUNC_NAME"
+            
+            terraform plan -out=$PLAN_FILE
+            aws s3 cp $PLAN_FILE s3://data15group3-execution-plans/lambda/tfplan-$FUNC_NAME-${TIMESTAMP}
+            
             echo "Applying Terraform configuration..."
             terraform apply -auto-approve
             
