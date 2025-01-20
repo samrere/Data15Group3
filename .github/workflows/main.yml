@@ -1,7 +1,7 @@
 name: Lambda Function Deployment
 
 on:
-  pull_request:
+  push:
     paths:
       - 'scripts/lambda/**'
     branches:
