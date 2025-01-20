@@ -99,9 +99,10 @@ jobs:
             fi
 
             echo "plan and upload the plan to data15group3-execution-plans"
+            
             terraform plan -out=tfplan-$FUNC_NAME
             TIMESTAMP=$(date +%Y%m%d%H%M%S)
-            aws s3 cp tfplan-lambda-scraper s3://data15group3-execution-plans/lambda//tfplan-$FUNC_NAME-${TIMESTAMP}
+            aws s3 cp tfplan-$FUNC_NAME s3://data15group3-execution-plans/lambda/tfplan-$FUNC_NAME-${TIMESTAMP}
             echo "Applying Terraform configuration..."
             terraform apply -auto-approve
             
