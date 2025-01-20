@@ -1,48 +1,110 @@
-name: Deploy CloudFormation Stacks
+name: Lambda Function Deployment
 
 on:
-  workflow_dispatch:
-  pull_request:
-    branches:
-      - main
   push:
+    paths:
+      - 'scripts/lambda/**'
     branches:
       - main
 
 jobs:
-  cfn-deployment:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-#        with:
-#          fetch-depth: 2 # Fetch the last two commits, used to comparing diff
+      - uses: actions/checkout@v3
 
       - name: Configure AWS credentials
-        id: creds
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-southeast-2
 
-      - name: Run upload script
-        run: sh scripts/shell/upload_to_s3.sh data14group1-scripts
-
-      - name: Deploy CloudFormation Stack
-        id: deploy-stack
-        uses: aws-actions/aws-cloudformation-github-deploy@v1.0.3
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v41
         with:
-          name: deploy-stack
-          template: cloudformation/root.yml
-          parameter-overrides: |
-            scriptsBucket=data14group1-scripts,
-            rawBucket=data14group1-raw,
-            stagingBucket=data14group1-staging,
-            transformedBucket=data14group1-transformed,
-            mlBucket=data14group1-ml,
-            lambdaRaw2stagingVersion=${{ env.LAMBDA_RAW2STAGING_VERSION }},
-            kmsKeyForDEArn=${{ secrets.KMS_KEY_DE_ARN }},
-            kmsKeyForMLArn=${{ secrets.KMS_KEY_ML_ARN }}
-          capabilities: CAPABILITY_IAM,CAPABILITY_NAMED_IAM
-          no-fail-on-empty-changeset: "1"
+          files: scripts/lambda/**
+
+      # Handle S3 uploads for changed Lambda functions
+      - name: Process changed functions
+        id: process-changes
+        run: |
+          # Create an array to store changed functions
+          declare -a CHANGED_FUNCTIONS=()
+          
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            if [[ $file != *.zip ]]; then
+              continue
+            fi
+            
+            FILENAME=$(basename $file)
+            FUNC_NAME=$(basename $file .zip)
+            
+            # Calculate hash of new zip
+            ZIP_HASH=$(sha256sum $file | cut -d ' ' -f1)
+            echo "Calculated hash for $FILENAME: $ZIP_HASH"
+            
+            # Get current hash from S3
+            S3_HASH=$(aws s3api head-object \
+              --bucket data15group3-scripts \
+              --key lambda/$FUNC_NAME/$FILENAME \
+              --query 'Metadata.sha256' \
+              --output text 2>/dev/null || echo "none")
+            echo "Current S3 hash for $FILENAME: $S3_HASH"
+            
+            if [ "$ZIP_HASH" != "$S3_HASH" ]; then
+              echo "Changes detected for $FILENAME, uploading to S3..."
+              aws s3 cp $file s3://data15group3-scripts/lambda/$FUNC_NAME/$FILENAME \
+                --metadata sha256=$ZIP_HASH
+              echo "Successfully uploaded $FILENAME"
+              
+              # Add to array of changed functions
+              CHANGED_FUNCTIONS+=("$FUNC_NAME")
+            else
+              echo "No changes detected for $FILENAME, skipping upload"
+            fi
+          done
+          
+          # Export changed functions list for next step
+          echo "changed_functions=${CHANGED_FUNCTIONS[*]}" >> $GITHUB_ENV
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Run Terraform for changed functions
+        if: env.changed_functions != ''
+        run: |
+          for FUNC_NAME in ${{ env.changed_functions }}; do
+            echo "Processing Terraform for function: $FUNC_NAME"
+            
+            # Verify Terraform directory exists
+            if [ ! -d "IaC/Lambda/$FUNC_NAME" ]; then
+              echo "Error: No Terraform configuration found for $FUNC_NAME"
+              continue
+            fi
+            
+            cd "IaC/Lambda/$FUNC_NAME"
+            
+            echo "Initializing Terraform..."
+            terraform init
+            
+            # Check if Lambda already exists
+            if aws lambda get-function --function-name $FUNC_NAME >/dev/null 2>&1; then
+              echo "Importing existing Lambda resources..."
+              terraform import aws_lambda_function.$FUNC_NAME $FUNC_NAME || true
+              terraform import aws_cloudwatch_log_group.lambda_log_group "/aws/lambda/$FUNC_NAME" || true
+            else
+              echo "Lambda function doesn't exist, will create new one"
+            fi
+            
+            echo "plan and upload the plan to data15group3-execution-plans"
+            terraform plan -out=tfplan-$FUNC_NAME
+            TIMESTAMP=$(date +%Y%m%d%H%M%S)
+            aws s3 cp tfplan-lambda-scraper s3://data15group3-execution-plans/lambda//tfplan-$FUNC_NAME-${TIMESTAMP}
+            echo "Applying Terraform configuration..."
+            terraform apply -auto-approve
+            
+            cd ../../../
+            echo "Completed deployment for $FUNC_NAME"
+          done
