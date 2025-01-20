@@ -93,6 +93,8 @@ jobs:
             if aws lambda get-function --function-name $FUNC_NAME >/dev/null 2>&1; then
               echo "Importing existing Lambda resources..."
               terraform import aws_lambda_function.$FUNC_NAME $FUNC_NAME || true
+            else
+              echo "Lambda function doesn't exist, will create new one"
             fi
 
             # Separate check for CloudWatch log group
@@ -100,6 +102,8 @@ jobs:
               --query 'logGroups[0].logGroupName' --output text 2>/dev/null; then
               echo "Importing existing CloudWatch log group..."
               terraform import aws_cloudwatch_log_group.lambda_log_group "/aws/lambda/$FUNC_NAME" || true
+            else
+              echo "Lambda function doesn't exist, will create new one"
             fi
             
             echo "Planning and uploading the plan to data15group3-execution-plans..."
