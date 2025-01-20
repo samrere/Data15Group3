@@ -1,7 +1,7 @@
 name: Lambda Function Deployment
 
 on:
-  push:
+  pull_request:
     paths:
       - 'scripts/lambda/**'
     branches:
@@ -97,7 +97,7 @@ jobs:
             else
               echo "Lambda function doesn't exist, will create new one"
             fi
-            
+
             echo "plan and upload the plan to data15group3-execution-plans"
             terraform plan -out=tfplan-$FUNC_NAME
             TIMESTAMP=$(date +%Y%m%d%H%M%S)
