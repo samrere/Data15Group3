@@ -59,6 +59,13 @@ jobs:
                 --metadata sha256=$ZIP_HASH
               echo "Successfully uploaded $FILENAME"
               
+              # Add version tracking
+              DEPLOYMENT_VERSION=$(date +%Y%m%d_%H%M%S)
+              aws s3api put-object-tagging \
+                --bucket data15group3-scripts \
+                --key lambda/$FUNC_NAME/$FILENAME \
+                --tagging "TagSet=[{Key=deployment_version,Value=$DEPLOYMENT_VERSION}]"
+              
               # Add to array of changed functions
               CHANGED_FUNCTIONS+=("$FUNC_NAME")
             else
@@ -74,6 +81,7 @@ jobs:
 
       - name: Run Terraform for changed functions
         if: env.changed_functions != ''
+        timeout-minutes: 15
         run: |
           for FUNC_NAME in ${{ env.changed_functions }}; do
             echo "Processing Terraform for function: $FUNC_NAME"
@@ -89,7 +97,7 @@ jobs:
             echo "Initializing Terraform..."
             terraform init
             
-            # Check if Lambda and CloudWatch log group exist
+            # Check if Lambda exists
             if aws lambda get-function --function-name $FUNC_NAME >/dev/null 2>&1; then
               echo "Importing existing Lambda resources..."
               terraform import aws_lambda_function.$FUNC_NAME $FUNC_NAME || true
@@ -97,24 +105,34 @@ jobs:
               echo "Lambda function doesn't exist, will create new one"
             fi
 
-            # Separate check for CloudWatch log group
-            if aws logs describe-log-groups --log-group-name-prefix "/aws/lambda/$FUNC_NAME" \
-              --query 'logGroups[0].logGroupName' --output text 2>/dev/null; then
+            # Check for CloudWatch log group with exact query
+            if aws logs describe-log-groups \
+              --log-group-name-prefix "/aws/lambda/$FUNC_NAME" \
+              --query "length(logGroups[?logGroupName=='/aws/lambda/${FUNC_NAME}'])" \
+              --output text | grep -q "1"; then
               echo "Importing existing CloudWatch log group..."
               terraform import aws_cloudwatch_log_group.lambda_log_group "/aws/lambda/$FUNC_NAME" || true
             else
-              echo "Lambda function doesn't exist, will create new one"
+              echo "CloudWatch log group doesn't exist, will create new one"
             fi
             
             echo "Planning and uploading the plan to data15group3-execution-plans..."
             TIMESTAMP=$(date +%Y%m%d%H%M%S)
             PLAN_FILE="tfplan-$FUNC_NAME"
             
-            terraform plan -out=$PLAN_FILE
+            if ! terraform plan -out=$PLAN_FILE; then
+              echo "Error: Failed to create Terraform plan for $FUNC_NAME"
+              continue
+            fi
+            
             aws s3 cp $PLAN_FILE s3://data15group3-execution-plans/lambda/tfplan-$FUNC_NAME-${TIMESTAMP}
             
             echo "Applying Terraform configuration..."
             terraform apply -auto-approve
+            
+            # Cleanup temporary files
+            rm -f $PLAN_FILE
+            rm -rf .terraform
             
             cd ../../../
             echo "Completed deployment for $FUNC_NAME"
