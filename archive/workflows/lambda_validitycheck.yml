@@ -32,31 +32,31 @@ jobs:
 
       # Deploy Lambda
       - name: Deploy Validity Check  Lambda
-        working-directory: IaC/Lambda/Validity_Check/ValidityCheck-starter
+        working-directory: IaC/Lambda/Validity_Check/validitycheck-starter
         run: |
           terraform init
           terraform validate
-          terraform plan -out=tfplan-lambda-ValidityCheck-starter
+          terraform plan -out=tfplan-lambda-validitycheck-starter
           TIMESTAMP=$(date +%Y%m%d%H%M%S)
-          aws s3 cp tfplan-lambda-ValidityCheck-starter s3://${{ github.event.inputs.s3_bucket }}/${{ github.event.inputs.s3_path }}/tfplan-lambda-ValidityCheck-starter-${TIMESTAMP}
-          terraform apply -auto-approve tfplan-lambda-ValidityCheck-starter
+          aws s3 cp tfplan-lambda-validitycheck-starter s3://${{ github.event.inputs.s3_bucket }}/${{ github.event.inputs.s3_path }}/tfplan-lambda-validitycheck-starter-${TIMESTAMP}
+          terraform apply -auto-approve tfplan-lambda-validitycheck-starter
 
       - name: Deploy Validity Check  Lambda
-        working-directory: IaC/Lambda/Validity_Check/ValidityCheck-worker
+        working-directory: IaC/Lambda/Validity_Check/validitycheck-worker
         run: |
           terraform init
           terraform validate
-          terraform plan -out=tfplan-lambda-ValidityCheck-worker
+          terraform plan -out=tfplan-lambda-validitycheck-worker
           TIMESTAMP=$(date +%Y%m%d%H%M%S)
-          aws s3 cp tfplan-lambda-ValidityCheck-worker s3://${{ github.event.inputs.s3_bucket }}/${{ github.event.inputs.s3_path }}/tfplan-lambda-ValidityCheck-worker-${TIMESTAMP}
-          terraform apply -auto-approve tfplan-lambda-ValidityCheck-worker
+          aws s3 cp tfplan-lambda-validitycheck-worker s3://${{ github.event.inputs.s3_bucket }}/${{ github.event.inputs.s3_path }}/tfplan-lambda-validitycheck-worker-${TIMESTAMP}
+          terraform apply -auto-approve tfplan-lambda-validitycheck-worker
 
       - name: Deploy Validity Check  Lambda
-        working-directory: IaC/Lambda/Validity_Check/ValidityCheck-collector
+        working-directory: IaC/Lambda/Validity_Check/validitycheck-collector
         run: |
           terraform init
           terraform validate
-          terraform plan -out=tfplan-lambda-ValidityCheck-collector
+          terraform plan -out=tfplan-lambda-validitycheck-collector
           TIMESTAMP=$(date +%Y%m%d%H%M%S)
-          aws s3 cp tfplan-lambda-ValidityCheck-collector s3://${{ github.event.inputs.s3_bucket }}/${{ github.event.inputs.s3_path }}/tfplan-lambda-ValidityCheck-collector-${TIMESTAMP}
-          terraform apply -auto-approve tfplan-lambda-ValidityCheck-collector
+          aws s3 cp tfplan-lambda-validitycheck-collector s3://${{ github.event.inputs.s3_bucket }}/${{ github.event.inputs.s3_path }}/tfplan-lambda-validitycheck-collector-${TIMESTAMP}
+          terraform apply -auto-approve tfplan-lambda-validitycheck-collector

@@ -12,7 +12,7 @@ resource "aws_sfn_state_machine" "sfn_state_machine" {
   "States": {
     "CalculateConfigs": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:ap-southeast-2:339713004220:function:ValidityCheck-starter",
+      "Resource": "arn:aws:lambda:ap-southeast-2:339713004220:function:validitycheck-starter",
       "Next": "ParallelWorkers",
       "ResultPath": "$.configs",
       "Retry": [
@@ -39,7 +39,7 @@ resource "aws_sfn_state_machine" "sfn_state_machine" {
         "States": {
           "Worker": {
             "Type": "Task",
-            "Resource": "arn:aws:lambda:ap-southeast-2:339713004220:function:ValidityCheck-worker",
+            "Resource": "arn:aws:lambda:ap-southeast-2:339713004220:function:validitycheck-worker",
             "End": true,
             "Retry": [
               {
@@ -59,7 +59,7 @@ resource "aws_sfn_state_machine" "sfn_state_machine" {
     },
     "Collector": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:ap-southeast-2:339713004220:function:ValidityCheck-collector",
+      "Resource": "arn:aws:lambda:ap-southeast-2:339713004220:function:validitycheck-collector",
       "End": true,
       "Retry": [
         {
